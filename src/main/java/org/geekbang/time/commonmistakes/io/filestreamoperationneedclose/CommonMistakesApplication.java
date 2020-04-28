@@ -24,7 +24,7 @@ public class CommonMistakesApplication {
         init();
         //readLargeFileRight();
         //readLargeFileWrong();
-        wrong();
+//        wrong();
     }
 
     private static void readLargeFileWrong() throws IOException {
@@ -33,7 +33,8 @@ public class CommonMistakesApplication {
 
     private static void readLargeFileRight() throws IOException {
         AtomicLong atomicLong = new AtomicLong();
-        Files.lines(Paths.get("large.txt")).forEach(line -> atomicLong.incrementAndGet());
+        Stream<String> lines = Files.lines(Paths.get("large.txt"));
+        lines.forEach(line -> atomicLong.incrementAndGet());
         log.info("lines {}", atomicLong.get());
     }
 
@@ -53,6 +54,8 @@ public class CommonMistakesApplication {
         String payload = IntStream.rangeClosed(1, 1000)
                 .mapToObj(__ -> "a")
                 .collect(Collectors.joining("")) + UUID.randomUUID().toString();
+
+        System.out.println(payload.length());
 //        Files.deleteIfExists(Paths.get("large.txt"));
 //        IntStream.rangeClosed(1, 10).forEach(__ -> {
 //            try {
