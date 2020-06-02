@@ -7,12 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
-@Metrics(ignoreException = true)
+//@Metrics(ignoreException = true)
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
     @Transactional
+    @Metrics
     public void createUser(UserEntity entity) {
         userRepository.save(entity);
         if (entity.getName().contains("test"))

@@ -16,4 +16,8 @@ public class SayBye extends SayService {
         super.say();
         log.info("bye");
     }
+
+    public static void main(String[] args) {
+        new SayBye().say();
+    }
 }
